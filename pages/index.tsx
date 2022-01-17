@@ -1,4 +1,5 @@
-import Head from 'next/head';
+import Head from 'next/head'
+import Sidebar from '../components/Sidebar'
 
 export default function Home() {
   return (
@@ -10,11 +11,11 @@ export default function Home() {
       <h1>this is a DOPE spotify 2.0 build</h1>
 
       <main>
-        {/* Sidebar */}
+        <Sidebar />
         {/* Center */}
       </main>
 
       <div>{/* Player */}</div>
     </div>
-  );
+  )
 }
