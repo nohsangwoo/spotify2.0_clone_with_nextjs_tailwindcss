@@ -10,6 +10,8 @@ create-next-app -e samplename
 
 로그인 인증을 위한 basic code form
 
+- login 과 logout기능을 관리해준다(세션에 토큰저장하는 방식으로 처리)
+
 - ref: https://next-auth.js.org/
 
 ## spotify web api noe
