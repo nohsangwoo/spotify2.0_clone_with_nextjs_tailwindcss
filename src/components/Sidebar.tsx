@@ -7,9 +7,13 @@ import {
   HeartIcon,
   RssIcon,
 } from '@heroicons/react/outline'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 const Sidebar = () => {
+  // useSession을 사용하고 싶으면 permission을 얻어야함(_app.tsx에서 설정)
+  // 즉 SessionProvider를 설정해주면 됨
+  const { data: session, status } = useSession()
+  console.log('session', session)
   return (
     <div className="text-gray-500 p-5 text-sm border-r border-gray-900">
       <div className="space-y-4">
@@ -19,9 +23,7 @@ const Sidebar = () => {
         >
           <p>Log out</p>
         </button>
-        <button
-          className="flex items-center space-x-2 hover:text-white"
-        >
+        <button className="flex items-center space-x-2 hover:text-white">
           <HomeIcon className="h5 w-5" />
           <p>Home</p>
         </button>
