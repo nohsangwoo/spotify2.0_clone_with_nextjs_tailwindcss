@@ -15,3 +15,7 @@ create-next-app -e samplename
 ## spotify web api noe
 
 - ref: https://github.com/thelinmichael/spotify-web-api-node
+
+```
+$ npm install spotify-web-api-node
+```
