@@ -19,3 +19,8 @@ create-next-app -e samplename
 ```
 $ npm install spotify-web-api-node
 ```
+
+- spotify developer에서 api를 생성후 edit settings
+  Redirect URIs에 아래 도메인을 추가해준다(화이트리스트에 추가해주는 내용)
+  http://localhost:3000/api/auth/callback/spotify
+  http://localhost:3000
