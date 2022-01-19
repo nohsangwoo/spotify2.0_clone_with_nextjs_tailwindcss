@@ -9,6 +9,8 @@ import {
 } from '@heroicons/react/outline'
 import { signOut, useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
+import { useRecoilState } from 'recoil'
+import { playlistIdState } from '../atoms/playlistAtom'
 
 type playlistType = {
   collaborative: boolean
@@ -41,7 +43,7 @@ const Sidebar = () => {
   // 즉 SessionProvider를 설정해주면 됨
   const { data: session, status } = useSession()
   const [plyalists, setPlaylists] = useState<playlistType[]>([])
-  const [playlistId, setPlaylistId] = useState<string | undefined | null>(null)
+  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState)
 
   console.log('You picked PlayListId: ', playlistId)
 
