@@ -26,3 +26,10 @@ $ npm install spotify-web-api-node
   Redirect URIs에 아래 도메인을 추가해준다(화이트리스트에 추가해주는 내용)
   http://localhost:3000/api/auth/callback/spotify
   http://localhost:3000
+
+## recoil
+
+global state managing tool
+
+- ref: https://recoiljs.org/ko/
+npm install recoil
