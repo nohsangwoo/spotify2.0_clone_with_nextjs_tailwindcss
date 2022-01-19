@@ -68,12 +68,9 @@ const Sidebar = () => {
         {/* play list... */}
         {plyalists.map((playlist: any) => {
           return (
-            <button
-              key={playlist.id}
-              className="flex items-center space-x-2 hover:text-white"
-            >
-              <p className="cursor-pointer hover:text-white">{playlist.name}</p>
-            </button>
+            <p key={playlist.id} className="cursor-pointer hover:text-white">
+              {playlist.name}
+            </p>
           )
         })}
       </div>
