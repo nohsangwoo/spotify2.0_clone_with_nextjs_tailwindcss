@@ -1,4 +1,5 @@
-import SpotifyWebApi from 'spotify-web-api-node/src/spotify-web-api'
+// import SpotifyWebApi from 'spotify-web-api-node/src/spotify-web-api'
+const SpotifyWebApi = require('spotify-web-api-node/src/spotify-web-api')
 
 const scopes = [
   'user-read-email',
