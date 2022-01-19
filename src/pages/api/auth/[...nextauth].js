@@ -47,7 +47,9 @@ export default NextAuth({
     signI: '/login',
   },
   callbacks: {
-    async jwt({ token, account, user }) {
+    async jwt(JWT_PROPS) {
+      const { token, account, user } = JWT_PROPS
+      console.log('indide jwt callback', JWT_PROPS)
       // initial sign in
       if (account && user) {
         return {
@@ -62,12 +64,12 @@ export default NextAuth({
 
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
-        console.log('EXISTING ACCESS TOKEN IS VALID')
+        console.log('EXISTING ACCESS TOKEN IS VALID', token)
         return token
       }
 
       //   Access token has expired, so we need to refresh it...
-      console.log('ACCESS TOKEN HAS EXPIRED, REFRESHING...')
+      console.log('ACCESS TOKEN HAS EXPIRED, REFRESHING...', token)
       return await refreshAccessToken(token)
     },
 
