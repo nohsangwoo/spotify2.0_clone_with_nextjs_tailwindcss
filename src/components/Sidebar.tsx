@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   HomeIcon,
   SearchIcon,
@@ -8,12 +8,26 @@ import {
   RssIcon,
 } from '@heroicons/react/outline'
 import { signOut, useSession } from 'next-auth/react'
+import useSpotify from '../hooks/useSpotify'
 
 const Sidebar = () => {
+  const spotifyApi = useSpotify()
   // useSession을 사용하고 싶으면 permission을 얻어야함(_app.tsx에서 설정)
   // 즉 SessionProvider를 설정해주면 됨
   const { data: session, status } = useSession()
-  console.log('session', session)
+  const [plyalists, setPlaylists] = useState<any[]>([])
+
+  useEffect(() => {
+    console.log('spotifyApi.getAccessToken()', spotifyApi.getAccessToken())
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi.getUserPlaylists().then((data: any) => {
+        console.log('data: ', data)
+        setPlaylists(data.body.items)
+      })
+    }
+  }, [session, useSpotify])
+
+  console.log('side bar: ', plyalists)
   return (
     <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen">
       <div className="space-y-4">

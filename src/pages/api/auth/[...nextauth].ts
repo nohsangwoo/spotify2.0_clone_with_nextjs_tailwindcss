@@ -46,12 +46,15 @@ export default NextAuth({
     async jwt(JWT_PROPS) {
       const { token, account, user } = JWT_PROPS
       console.log('indide jwt callback', JWT_PROPS)
+      // console.log('token, account, user', token, account, user)
+
       // initial sign in
       if (account && user) {
+        console.log('account and user are: ')
         return {
           ...token,
-          accessToken: token.access_token,
-          refreshToken: token.refresh_token,
+          accessToken: account.access_token,
+          refreshToken: account.refresh_token,
           username: account.providerAccountId,
           accessTokenExpires:
             (account.expires_at && account.expires_at * 1000) ||
@@ -72,10 +75,13 @@ export default NextAuth({
 
       //   Access token has expired, so we need to refresh it...
       console.log('ACCESS TOKEN HAS EXPIRED, REFRESHING...', token)
-      return await refreshAccessToken(token)
+      return refreshAccessToken(token)
     },
 
     async session({ session, token }: any) {
+      console.log('inside session  session', session)
+      console.log('inside session token', token)
+
       session.user.accessToken = token.accessToken
       session.user.refreshToken = token.refreshToken
       session.user.username = token.username
