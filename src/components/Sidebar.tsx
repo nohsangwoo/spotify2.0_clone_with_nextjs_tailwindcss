@@ -10,18 +10,43 @@ import {
 import { signOut, useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
 
+type playlistType = {
+  collaborative: boolean
+  description: string
+  external_urls: { spotify: string }
+  href: string
+  id: string
+  images: { height?: string | number; url: string; width?: string | number }[]
+  name: string
+  owner: {
+    display_name: string
+    external_urls: {
+      spotify: string
+    }
+    href: string
+    id: string
+    type: string
+  }
+  primary_color?: string | number
+  public: boolean
+  snapshot_id: string
+  tracks: { href: string; total: number }
+  type: string
+  uri: string
+}
+
 const Sidebar = () => {
   const spotifyApi = useSpotify()
   // useSession을 사용하고 싶으면 permission을 얻어야함(_app.tsx에서 설정)
   // 즉 SessionProvider를 설정해주면 됨
   const { data: session, status } = useSession()
-  const [plyalists, setPlaylists] = useState<any[]>([])
+  const [plyalists, setPlaylists] = useState<playlistType[]>([])
+  const [playlistId, setPlaylistId] = useState<string | undefined | null>(null)
 
   useEffect(() => {
-    console.log('spotifyApi.getAccessToken()', spotifyApi.getAccessToken())
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getUserPlaylists().then((data: any) => {
-        console.log('data: ', data)
+        // console.log('data: ', data)
         setPlaylists(data.body.items)
       })
     }
@@ -66,9 +91,13 @@ const Sidebar = () => {
         <hr className="border-t-[0.1px] border-gray-900" />
 
         {/* play list... */}
-        {plyalists.map((playlist: any) => {
+        {plyalists.map(playlist => {
           return (
-            <p key={playlist.id} className="cursor-pointer hover:text-white">
+            <p
+              key={playlist.id}
+              className="cursor-pointer hover:text-white"
+              onClick={() => setPlaylistId(playlist.id)}
+            >
               {playlist.name}
             </p>
           )
