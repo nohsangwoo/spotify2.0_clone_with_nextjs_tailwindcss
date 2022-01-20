@@ -32,4 +32,8 @@ $ npm install spotify-web-api-node
 global state managing tool
 
 - ref: https://recoiljs.org/ko/
-npm install recoil
+  npm install recoil
+
+## issue1
+
+token이 만료됐을때 로그아웃처리 및 세션초기화가 안됨 (에러핸들링 해야함)
