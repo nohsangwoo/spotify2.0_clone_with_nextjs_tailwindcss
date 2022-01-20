@@ -1,5 +1,6 @@
 import {
   HeartIcon,
+  ReplyIcon,
   VolumeUpIcon as VolumnDownicon,
 } from '@heroicons/react/outline'
 import {
@@ -78,6 +79,9 @@ const Player = () => {
         ) : (
           <PlayIcon className="button w-10 h-10" />
         )}
+        <FastForwardIcon className="button" />
+
+        <ReplyIcon className="button" />
       </div>
     </div>
   )
