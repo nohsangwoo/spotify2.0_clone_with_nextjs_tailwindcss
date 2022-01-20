@@ -48,4 +48,9 @@ token이 만료됐을때 로그아웃처리 및 세션초기화가 안됨 (에�
 - ref: https://www.npmjs.com/package/tailwind-scrollbar-hide
 
 ## 글자의 길이가 너무 길때 생략해주는 tailwindcss
+
 - truncate
+
+## tailwindcss custom
+
+\_app.tsx에 globals.css로 불러오고 custom 하고싶은내용을 그곳에 수정한다.
