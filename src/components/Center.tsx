@@ -32,7 +32,7 @@ const Center = () => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi
         .getPlaylist(playlistId)
-        .then((data: any) => {
+        .then((data) => {
           // console.log('data: ', data)
           setPlaylist(data.body)
         })

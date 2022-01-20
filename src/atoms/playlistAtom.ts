@@ -11,7 +11,7 @@ export const playlistState = atom<any>({
   key: 'playlistState',
   default: null,
 })
-export const playlistIdState = atom<string_null_undefined>({
+export const playlistIdState = atom<string>({
   key: 'playlistIdState',
   default: '7BokM2URofaR4dHSUl1mXG',
 })
