@@ -4,7 +4,14 @@ import { atom } from 'recoil'
 //   key: string
 //   default: string
 // }
-export const playlistIdState = atom<string | undefined | null>({
+
+type string_null_undefined = string | null | undefined
+
+export const playlistState = atom<string_null_undefined>({
+  key: 'playlistState',
+  default: null,
+})
+export const playlistIdState = atom<string_null_undefined>({
   key: 'playlistIdState',
   default: '7BokM2URofaR4dHSUl1mXG',
 })
