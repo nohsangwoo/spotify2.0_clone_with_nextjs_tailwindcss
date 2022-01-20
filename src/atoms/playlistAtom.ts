@@ -7,7 +7,7 @@ import { atom } from 'recoil'
 
 type string_null_undefined = string | null | undefined
 
-export const playlistState = atom<string_null_undefined>({
+export const playlistState = atom<any>({
   key: 'playlistState',
   default: null,
 })
