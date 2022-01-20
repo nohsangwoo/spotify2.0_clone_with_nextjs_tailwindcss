@@ -43,7 +43,7 @@ const Center = () => {
   console.log('playlist', playlist)
 
   return (
-    <div className="flex-grow">
+    <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">
         <div
           className="flex items-center bg-black space-x-3 

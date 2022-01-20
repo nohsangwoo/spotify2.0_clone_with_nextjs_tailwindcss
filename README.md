@@ -37,3 +37,12 @@ global state managing tool
 ## issue1
 
 token이 만료됐을때 로그아웃처리 및 세션초기화가 안됨 (에러핸들링 해야함)
+
+\_app에서 context 관련내용으로 해결
+
+## tailwindcss-hide-bar
+
+- tailwindcss scrollbar hide 모듈을 설치해서
+  className="scrollbar-hide"로 적용하면 작동함
+
+- ref: https://www.npmjs.com/package/tailwind-scrollbar-hide
