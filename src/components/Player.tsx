@@ -17,6 +17,7 @@ import useSpotify from '../hooks/useSpotify'
 import { useRecoilState } from 'recoil'
 import { currentTrackIdState, isPlayingState } from '../atoms/songAtom'
 import useSonginfo from '../hooks/useSonginfo'
+import { debounce } from 'lodash'
 
 const Player = () => {
   const spotifyApi = useSpotify()
@@ -105,6 +106,22 @@ const Player = () => {
       setVolumn(50)
     }
   }, [currentTrackId, spotifyApi, session])
+
+  useEffect(() => {
+    if (volumn > 0 && volumn < 100) {
+      // spotifyApi.setVolume(volumn)
+      debouncedAdjustVolumn(volumn)
+    }
+  }, [volumn])
+
+  const debouncedAdjustVolumn = useCallback(
+    debounce(volumn => {
+      spotifyApi.setVolume(volumn).catch(err => {
+        console.log('err: ', err)
+      })
+    }, 500),
+    [spotifyApi, volumn],
+  )
 
   console.log('volumn: ', volumn)
   return (
