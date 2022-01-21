@@ -59,6 +59,8 @@ const Player = () => {
 
   const handleVolumnChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      // setVolumn(+event?.target?.value)
+      // spotifyApi.setVolume(+event?.target?.value)
       if (event) {
         setVolumn(+event?.target?.value)
       }
