@@ -15,11 +15,8 @@ const Song = ({ order, track }: Props) => {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState)
 
   const playSong = async () => {
-    // const { id } = track.track
     setCurrentTrackId(track?.track?.id)
     setIsPlaying(true)
-
-    // console.log(track.track.uri)
     spotifyApi.play({
       uris: [track.track.uri],
     })

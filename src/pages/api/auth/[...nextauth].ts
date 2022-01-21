@@ -1,7 +1,6 @@
 import NextAuth from 'next-auth'
 import SpotifyProvider from 'next-auth/providers/spotify'
 import spotifyAPI, { LOGIN_URL } from '../../../lib/spotify'
-import { signOut, useSession } from 'next-auth/react'
 
 async function refreshAccessToken(token: any) {
   try {
@@ -81,8 +80,8 @@ export default NextAuth({
     },
 
     async session({ session, token }: any) {
-      console.log('inside session  session', session)
-      console.log('inside session token', token)
+      // console.log('inside session  session', session)
+      // console.log('inside session token', token)
 
       session.user.accessToken = token.accessToken
       session.user.refreshToken = token.refreshToken

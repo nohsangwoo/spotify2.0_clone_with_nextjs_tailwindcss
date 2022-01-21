@@ -32,11 +32,8 @@ const Player = () => {
   const fetchCurrentSong = () => {
     if (!songInfo) {
       spotifyApi.getMyCurrentPlayingTrack().then((data: any) => {
-        console.log('data: ', data)
         setCurrentTrackId(data?.body?.item?.id)
-
         spotifyApi.getMyCurrentPlaybackState().then((data: any) => {
-          console.log('Now Playing: ', data?.body)
           setIsPlaying(data?.body?.is_playing)
         })
         setIsPlaying(data?.body?.is_playing)
@@ -76,12 +73,6 @@ const Player = () => {
         setVolumn(0)
       }
     }
-    // spotifyApi.getMyCurrentPlaybackState().then(data => {
-    //   if (data?.body?.is_playing) {
-    //     spotifyApi.setVolume(volumn - 10)
-    //     setVolumn(volumn - 10)
-    //   }
-    // })
   }, [spotifyApi, volumn, setVolumn])
 
   const handleVolumnUp = useCallback(() => {
@@ -91,12 +82,6 @@ const Player = () => {
         setVolumn(100)
       }
     }
-    // spotifyApi.getMyCurrentPlaybackState().then(data => {
-    //   if (data?.body?.is_playing) {
-    //     spotifyApi.setVolume(volumn + 10)
-    //     setVolumn(volumn + 10)
-    //   }
-    // })
   }, [spotifyApi, volumn, setVolumn])
 
   useEffect(() => {

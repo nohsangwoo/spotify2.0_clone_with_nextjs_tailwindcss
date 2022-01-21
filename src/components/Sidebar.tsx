@@ -45,19 +45,14 @@ const Sidebar = () => {
   const [plyalists, setPlaylists] = useState<playlistType[]>([])
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState)
 
-  console.log('You picked PlayListId: ', playlistId)
-
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      console.log('getaccesstoken in sidebar: ', spotifyApi.getAccessToken())
       spotifyApi.getUserPlaylists().then((data: any) => {
-        // console.log('data: ', data)
         setPlaylists(data.body.items)
       })
     }
   }, [session, useSpotify])
 
-  console.log('side bar: ', plyalists)
   return (
     <div
       className="text-gray-500 p-5 text-xs lg:text-sm border-r 

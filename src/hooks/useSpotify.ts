@@ -13,7 +13,6 @@ const useSpotify = () => {
   const { data: session, status } = useSession()
   useEffect(() => {
     if (session) {
-      console.log('session is: ', session, status)
       // If refresh access token attempt fails, direct user to login...
 
       try {
@@ -23,9 +22,6 @@ const useSpotify = () => {
       } catch (e) {
         console.log(e)
       }
-
-      // @ts-ignore
-      console.log('token on useSpotify is: ', session?.user?.accessToken)
 
       // @ts-ignore
       spotifyApi.setAccessToken(session?.user?.accessToken)

@@ -5,7 +5,6 @@ import Song from './Song'
 
 const Songs = () => {
   const playlist = useRecoilValue(playlistState)
-  console.log('inside songs component: ', playlist)
   return (
     <div
       className="p-8 flex flex-col space-y-1 pb-28 
