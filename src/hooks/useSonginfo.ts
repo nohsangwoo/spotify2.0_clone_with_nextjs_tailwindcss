@@ -20,6 +20,7 @@ const useSonginfo = () => {
           `https://api.spotify.com/v1/tracks/${currentTrackId}`,
           {
             headers: {
+              Accept: 'application/json',
               Authorization: `Bearer ${spotifyApi.getAccessToken()}`,
             },
           },
