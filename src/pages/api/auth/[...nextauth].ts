@@ -46,8 +46,6 @@ export default NextAuth({
   callbacks: {
     async jwt(JWT_PROPS) {
       const { token, account, user } = JWT_PROPS
-      console.log('indide jwt callback', JWT_PROPS)
-      // console.log('token, account, user', token, account, user)
 
       // initial sign in
       if (account && user) {

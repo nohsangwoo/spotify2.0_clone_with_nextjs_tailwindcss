@@ -9,7 +9,6 @@ export default function Home() {
     <div className="bg-black h-screen overflow-hidden">
       <Head>
         <title>spotify 2.0</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className="flex">
         <Sidebar />
