@@ -12,7 +12,7 @@ import {
   SwitchHorizontalIcon,
 } from '@heroicons/react/solid'
 import { useSession } from 'next-auth/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import useSpotify from '../hooks/useSpotify'
 import { useRecoilState } from 'recoil'
 import { currentTrackIdState, isPlayingState } from '../atoms/songAtom'
@@ -45,7 +45,7 @@ const Player = () => {
 
   console.log('songInfo: ', songInfo)
 
-  const handlePlayPause = () => {
+  const handlePlayPause = useCallback(() => {
     spotifyApi.getMyCurrentPlaybackState().then(data => {
       if (data?.body?.is_playing) {
         spotifyApi.pause()
@@ -55,7 +55,46 @@ const Player = () => {
         setIsPlaying(true)
       }
     })
-  }
+  }, [spotifyApi, setIsPlaying])
+
+  const handleVolumnChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event) {
+        setVolumn(+event?.target?.value)
+      }
+    },
+    [setVolumn],
+  )
+
+  const handleVolumnDown = useCallback(() => {
+    if (volumn > 0) {
+      setVolumn(volumn - 10)
+      if (volumn < 10) {
+        setVolumn(0)
+      }
+    }
+    // spotifyApi.getMyCurrentPlaybackState().then(data => {
+    //   if (data?.body?.is_playing) {
+    //     spotifyApi.setVolume(volumn - 10)
+    //     setVolumn(volumn - 10)
+    //   }
+    // })
+  }, [spotifyApi, volumn, setVolumn])
+
+  const handleVolumnUp = useCallback(() => {
+    if (volumn < 100) {
+      setVolumn(volumn + 10)
+      if (volumn > 90) {
+        setVolumn(100)
+      }
+    }
+    // spotifyApi.getMyCurrentPlaybackState().then(data => {
+    //   if (data?.body?.is_playing) {
+    //     spotifyApi.setVolume(volumn + 10)
+    //     setVolumn(volumn + 10)
+    //   }
+    // })
+  }, [spotifyApi, volumn, setVolumn])
 
   useEffect(() => {
     if (spotifyApi.getAccessToken() && !currentTrackId) {
@@ -64,6 +103,8 @@ const Player = () => {
       setVolumn(50)
     }
   }, [currentTrackId, spotifyApi, session])
+
+  console.log('volumn: ', volumn)
   return (
     <div
       className="h-24 bg-gradient-to-b from-black
@@ -82,6 +123,7 @@ const Player = () => {
           <p>{songInfo?.artists?.[0]?.name}</p>
         </div>
       </div>
+
       {/* Center */}
       <div className="flex items-center justify-evenly">
         <SwitchHorizontalIcon className="button" />
@@ -95,6 +137,23 @@ const Player = () => {
         <FastForwardIcon className="button" />
 
         <ReplyIcon className="button" />
+      </div>
+
+      {/* Right */}
+      <div
+        className="flex items-center space-x-3
+      md:space-x-4 justify-items-end pr-5"
+      >
+        <VolumnDownicon className="button" onClick={handleVolumnDown} />
+        <input
+          className="w-14 md:w-[6.5rem]"
+          type="range"
+          min="0"
+          max="100"
+          value={volumn}
+          onChange={handleVolumnChange}
+        />
+        <VolumeUpIcon onClick={handleVolumnUp} className="button" />
       </div>
     </div>
   )
